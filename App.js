@@ -10,7 +10,9 @@ export default function App() {
         <TouchableOpacity>
           <Text style={styles.btnText}>Work</Text>
         </TouchableOpacity>
-        <Text style={styles.btnText}>Travel</Text>
+        <TouchableOpacity>
+          <Text style={styles.btnText}>Travel</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
