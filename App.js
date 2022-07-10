@@ -27,7 +27,9 @@ export default function App() {
   };
   const loadToDos = async () => {
     const s = await AsyncStorage.getItem(STORAGE_KEY);
-    JSON.parse(s) && setToDos(JSON.parse(s));
+    if (s) {
+      JSON.parse(s) && setToDos(JSON.parse(s));
+    }
   };
   const travel = () => {
     setWorking(false);
