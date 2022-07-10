@@ -12,6 +12,7 @@ import React, { useState } from "react";
 export default function App() {
   const [working, setWorking] = useState(true);
   const [text, setText] = useState("");
+  const [toDos, setToDos] = useState({});
   const travel = () => {
     setWorking(false);
   };
@@ -20,6 +21,17 @@ export default function App() {
   };
   const onChange = (payload) => {
     setText(payload);
+  };
+  const addToDo = () => {
+    if (text === "") {
+      return;
+    }
+    const newToDos = Object.assign({}, toDos, {
+      [Date.now()]: { text, work: working },
+    });
+    setToDos(newToDos);
+    console.log(toDos);
+    setText("");
   };
   return (
     <View style={styles.container}>
@@ -48,6 +60,8 @@ export default function App() {
       </View>
 
       <TextInput
+        onSubmitEditing={addToDo}
+        returnKeyType="done"
         onChangeText={onChange}
         value={text}
         placeholder={
