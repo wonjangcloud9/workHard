@@ -81,7 +81,8 @@ export default function App() {
         <TouchableOpacity onPress={work}>
           <Text
             style={{
-              ...styles.btnText,
+              fontSize: 38,
+              fontWeight: "600",
               color: working ? "white" : theme.grey,
             }}
           >
@@ -91,7 +92,8 @@ export default function App() {
         <TouchableOpacity onPress={travel}>
           <Text
             style={{
-              ...styles.btnText,
+              fontSize: 38,
+              fontWeight: "600",
               color: !working ? "white" : theme.grey,
             }}
           >
@@ -137,10 +139,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     marginTop: 100,
-  },
-  btnText: {
-    fontSize: 38,
-    fontWeight: "600",
   },
   input: {
     backgroundColor: "white",
