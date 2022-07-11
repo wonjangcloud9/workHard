@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  Platform,
 } from "react-native";
 import { theme } from "./colors";
 import React, { useEffect, useState } from "react";
@@ -49,19 +50,29 @@ export default function App() {
     await saveToDos(newToDos);
     setText("");
   };
-  const deleteToDo = (key) => {
-    Alert.alert("Delete To Do", "Are you sure?", [
-      { text: "No" },
-      {
-        text: "Yes",
-        onPress: async () => {
-          const newToDos = { ...toDos };
-          delete newToDos[key];
-          setToDos(newToDos);
-          await saveToDos(newToDos);
+  const deleteToDo = async (key) => {
+    if (Platform.OS === "web") {
+      const ok = window.confirm("Are you sure you want to delete this?");
+      if (ok) {
+        const newToDos = { ...toDos };
+        delete newToDos[key];
+        setToDos(newToDos);
+        await saveToDos(newToDos);
+      }
+    } else {
+      Alert.alert("Delete To Do", "Are you sure?", [
+        { text: "No" },
+        {
+          text: "Yes",
+          onPress: async () => {
+            const newToDos = { ...toDos };
+            delete newToDos[key];
+            setToDos(newToDos);
+            await saveToDos(newToDos);
+          },
         },
-      },
-    ]);
+      ]);
+    }
   };
   return (
     <View style={styles.container}>
